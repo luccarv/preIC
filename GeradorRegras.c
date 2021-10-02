@@ -12,7 +12,6 @@ typedef struct _tuple {
 
 //Algoritmo de busca binária.
 int binsearch(int *arr, int l, int r, int x) {
-
 	if(r >= 1) {
 		int m = l + (r-l)/2;
 		if(arr[m] == x)
@@ -26,7 +25,7 @@ int binsearch(int *arr, int l, int r, int x) {
 
 //Carrega a melodia num vetor de notas.
 tuple *getMelodia(int tam, int tempo) {
-	//Calcula a duração do semibreve em milissegundos.
+	//Calcula a duração da semínima em milissegundos.
 	double semiMillis = (60.0/(double)tempo)*1000;
 
 	//Vetor contendo os valores MIDI possíveis notas iniciais.
@@ -107,7 +106,6 @@ tuple *getMelodia(int tam, int tempo) {
 
 //Toca as frequências calculadas utilizando a função Beep()
 void playMelodia(tuple *melodia, int size) {
-
 	for(int i = 0; i < size; i++) {
 		printf("Tocando frequencia %lf com duracao %lf\n\n", melodia[i].frequencia, melodia[i].duracao);
 		Beep(melodia[i].frequencia, melodia[i].duracao);
@@ -115,9 +113,8 @@ void playMelodia(tuple *melodia, int size) {
 
 }
 
-//O programa deve ser executado seguido dos argumentos "número de notas" e "semimínimas por minuto".
+//O programa deve ser executado seguido dos argumentos "número de notas" e "semínimas por minuto".
 int main(int argc, char *argv[]) {
-
     if(argc < 3) {
     	printf("Argumentos insuficientes.\n");
 		return 0;
