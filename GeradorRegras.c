@@ -47,7 +47,7 @@ tuple *getMelodia(int tam, int tempo) {
 
 	double duracao = fatorFiguras[rand()%6]*semiMillis;
 
-	melodia[0].frequencia = (double)440*pow(2, (tmpNota-69)/12);
+	melodia[0].frequencia = (double)440*pow(2, (tmpNota-69)/12.0);
 	melodia[0].duracao = duracao;
 
 
@@ -59,10 +59,10 @@ tuple *getMelodia(int tam, int tempo) {
 			//Índice que serve para pegar a nota seguinte.
 			int prevIdx = tmpIdx;
 
-			//Para somar +-5 ao índice.
-			int incremento = 5 - (rand()%10+1);
+			//Para somar +-4 ao índice.
+			int incremento = 4 - (rand()%8+1);
 
-			//Decide se pode somar +-5 ou +5 ou -5.
+			//Decide se pode somar +-4 ou +4 ou -4.
 			if(tmpIdx == 0)
 				tmpIdx += abs(incremento);
 			else if(tmpIdx == 13)
@@ -75,6 +75,12 @@ tuple *getMelodia(int tam, int tempo) {
 				tmpIdx = 0;
 			if(tmpIdx > 13)
 				tmpIdx = 13;
+
+			//Se for um Mi ou um Si, muda o índice para o Fá ou o Dó superior
+			if(tmpIdx == 2 || tmpIdx == 6 || tmpIdx == 9 || tmpIdx == 13) {
+				tmpIdx++;
+			}
+				
 
 			//Sequências proibidas que invalidam a seleção da nota.
 			if( (notas[prevIdx] == 65 && notas[tmpIdx] == 71) || 
@@ -89,7 +95,7 @@ tuple *getMelodia(int tam, int tempo) {
 
 		tmpNota = notas[tmpIdx];
 
-		melodia[i].frequencia = 440*pow(2, (double)(tmpNota-69)/12);
+		melodia[i].frequencia = 440*pow(2, (double)(tmpNota-69)/12.0);
 		melodia[i].duracao = duracao;
 	}
 	//Insere Do4 ao final do vetor.
@@ -97,7 +103,7 @@ tuple *getMelodia(int tam, int tempo) {
 
 	duracao = fatorFiguras[rand()%6]*semiMillis;
 
-	melodia[tam-1].frequencia = 440*pow(2, (double)(tmpNota-69)/12);
+	melodia[tam-1].frequencia = 440*pow(2, (double)(tmpNota-69)/12.0);
 	melodia[tam-1].duracao = duracao; 
 
 	//Retorna a melodia 
@@ -107,7 +113,7 @@ tuple *getMelodia(int tam, int tempo) {
 //Toca as frequências calculadas utilizando a função Beep()
 void playMelodia(tuple *melodia, int size) {
 	for(int i = 0; i < size; i++) {
-		printf("Tocando frequencia %lf com duracao %lf\n\n", melodia[i].frequencia, melodia[i].duracao);
+		printf("Tocando frequencia %lfHz, com duracao de %lfms \n\n", melodia[i].frequencia, melodia[i].duracao);
 		Beep(melodia[i].frequencia, melodia[i].duracao);
 	}
 
