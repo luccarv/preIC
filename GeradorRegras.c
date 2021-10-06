@@ -86,7 +86,7 @@ tuple *getMelodia(int tam, int tempo) {
 			if( (notas[prevIdx] == 65 && notas[tmpIdx] == 71) || 
 				(notas[prevIdx] == 71 && notas[tmpIdx] == 65) ||
 				(notas[prevIdx] == 65 && notas[tmpIdx] == 59) ||
-				(notas[prevIdx] == 53 && notas[tmpIdx] == 96) 
+				(notas[prevIdx] == 53 && notas[tmpIdx] == 69) 
 			)	continue;
 			isValid = 1;
 		}
