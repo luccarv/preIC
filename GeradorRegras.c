@@ -113,8 +113,10 @@ tuple *getMelodia(int tam, int tempo) {
 //Toca as frequências calculadas utilizando a função Beep()
 void playMelodia(tuple *melodia, int size) {
 	for(int i = 0; i < size; i++) {
-		printf("Tocando frequencia %dHz, com duracao de %dms \n\n", (int)melodia[i].frequencia, (int)melodia[i].duracao);
-		Beep((int)melodia[i].frequencia, (int)melodia[i].duracao);
+		int f = melodia[i].frequencia;
+		int d = melodia[i].duracao;
+		printf("Tocando frequencia %dHz, com duracao de %dms \n\n", f, d);
+		Beep(f, d);
 	}
 
 }
